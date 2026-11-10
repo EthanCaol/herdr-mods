@@ -55,7 +55,7 @@ export default class Tabs extends View {
     const newTab = div().id("tab-new").size(30).ml(4).flex_none().flex().items_center().justify_center().rounded(6).text_size(20).text_color(t.dim)
       .hover(s => s.bg(t.hover).text_color(t.foreground))
       .on_mouse_down("left", stop)
-      .on_click((_e, cx) => { cx.stop_propagation(); run("tab.new", { argv: ["claude"] }); })
+      .on_click((_e, cx) => { cx.stop_propagation(); run("tab.new", { argv: ["claude", "--permission-mode", "bypassPermissions"] }); })
       .child("+");
     const item = (c, i) => {
       const program = panes().find(p => p.tab === c.id && p.program?.agent)?.program ?? panes().find(p => p.tab === c.id)?.program;

@@ -19,7 +19,7 @@
 - 右键: 打开标签页菜单
 - 左键点击 ×: 关闭该标签页
 - **中键点击标签页: 关闭该标签页**
-- **点击标签栏末尾的 `+`: 新建一个运行 Claude Code 的标签页**。原来的 `+` 在右侧, 打开程序菜单; 现在改为直接新建会话, 程序菜单不再从标签栏进入
+- **点击标签栏末尾的 `+`: 新建一个运行 Claude Code 的标签页**。原来的 `+` 在右侧, 打开程序菜单; 现在改为直接新建会话, 程序菜单不再从标签栏进入。命令带 `--permission-mode bypassPermissions`, 新会话跳过权限确认; 新标签页建在当前 space 里, 在远程 space 上点加号就是远程会话
 - 关闭最后一个标签页时, Herdr 会弹出确认框, 因为这会关闭整个 space
 - 滚轮在标签栏上滚动: 切换上一个或下一个标签页
 
@@ -35,7 +35,7 @@
 const newTab = div().id("tab-new").size(30).ml(4).flex_none().flex().items_center().justify_center().rounded(6).text_size(20).text_color(t.dim)
   .hover(s => s.bg(t.hover).text_color(t.foreground))
   .on_mouse_down("left", stop)
-  .on_click((_e, cx) => { cx.stop_propagation(); run("tab.new", { argv: ["claude"] }); })
+  .on_click((_e, cx) => { cx.stop_propagation(); run("tab.new", { argv: ["claude", "--permission-mode", "bypassPermissions"] }); })
   .child("+");
 ```
 
