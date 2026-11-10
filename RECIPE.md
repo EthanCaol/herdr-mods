@@ -36,7 +36,7 @@ const newTab = div().id("tab-new").size(30).ml(4).flex_none().flex().items_cente
   .hover(s => s.bg(t.hover).text_color(t.foreground))
   .on_mouse_down("left", stop)
   .on_click((_e, cx) => { cx.stop_propagation(); run("tab.new", { name: `新会话-${shown.length + 1}`, argv: ["claude", "--permission-mode", "bypassPermissions"] }); })
-  .child(svg("mods/tab-middle-close/plus.svg").size(16));
+  .child(svg("mods/tab-middle-close/plus.svg").size(19));
 ```
 
 `newTab` 放到标签栏容器的子元素列表末尾, 跟随标签页一起横向滚动; 原来位于右侧、打开 `new-menu` 的 `+` 已删除。
