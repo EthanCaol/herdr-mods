@@ -1,6 +1,6 @@
 # herdr-mods
 
-个人使用的 Herdr 模组, 目前只有一个: 标签栏支持鼠标中键关闭。
+个人使用的 Herdr 模组, 目前只有一个: 标签栏支持鼠标中键关闭, 末尾的 `+` 直接新建 Claude Code 会话。
 
 模组是 Herdr 界面的组成部分, 用 JavaScript 和 gpui-kit 描述原生界面, 保存后热重载。
 
@@ -19,7 +19,7 @@ move tab-middle-close %USERPROFILE%\.config\herdr-app\mods\
 
 | 文件 | 作用 |
 | --- | --- |
-| `main.js` | 模组本体, 由官方 `tabs` 模组复制后增加中键处理 |
+| `main.js` | 模组本体, 由官方 `tabs` 模组复制后增加中键关闭与末尾 `+` 新建会话 |
 | `mod.json` | 模组属性: 放置位置 `none`, 标题 `Tabs` |
 | `win-*.svg` | Windows 上的最小化、最大化、还原、关闭按钮图标 |
 | `RECIPE.md` | 改动的说明, 以及 Herdr 升级后重新合入的步骤 |
