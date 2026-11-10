@@ -32,7 +32,7 @@
 .on_mouse_down("middle", (_e, cx) => { cx.stop_propagation(); run("tab.close", { id: c.id }); })
 
 // 标签栏末尾的 +, 直接新建 Claude Code 会话
-const newTab = div().id("tab-new").size(28).flex_none().flex().items_center().justify_center().rounded(6).text_size(18).text_color(t.dim)
+const newTab = div().id("tab-new").size(30).ml(4).flex_none().flex().items_center().justify_center().rounded(6).text_size(20).text_color(t.dim)
   .hover(s => s.bg(t.hover).text_color(t.foreground))
   .on_mouse_down("left", stop)
   .on_click((_e, cx) => { cx.stop_propagation(); run("tab.new", { argv: ["claude"] }); })
