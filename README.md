@@ -1,38 +1,35 @@
 # herdr-mods
 
-Herdr 桌面应用的模组合集。模组是 Herdr 界面的组成部分, 用 JavaScript 和 gpui-kit 描述原生界面, 保存后热重载。
+个人使用的 Herdr 模组, 目前只有一个: 标签栏支持鼠标中键关闭。
+
+模组是 Herdr 界面的组成部分, 用 JavaScript 和 gpui-kit 描述原生界面, 保存后热重载。
 
 ## 安装
 
-把模组文件夹复制到 Herdr 的模组目录:
+把本目录复制成 Herdr 模组目录下名为 `tab-middle-close` 的文件夹:
 
 ```
-%USERPROFILE%\.config\herdr-app\mods\<name>\
+git clone https://github.com/EthanCaol/herdr-mods.git tab-middle-close
+move tab-middle-close %USERPROFILE%\.config\herdr-app\mods\
 ```
 
-然后在 Herdr 里打开:
+再复制一份官方布局并启用:
 
 ```
-herdr-app do mod.open --name <name>
+herdr-app do layout.clone --name main --as main-middle-close
+herdr-app do layout.switch --name main-middle-close
 ```
 
-或者用带参数的模组面板: `pane.split` 时传 `mod` 与 `props`。
+打开 `layouts/main-middle-close.json`, 把标签栏块的 `content.mod` 从 `tabs` 改为 `tab-middle-close`。改动保存后热重载生效。
 
-## 模组列表
+## 文件
 
-| 模组 | 说明 | 安装 |
-| --- | --- | --- |
-| `tab-middle-close` | 标签栏增加鼠标中键关闭标签页 | 复制 `mods/tab-middle-close` 与 `layouts/main-middle-close.json`, 然后 `herdr-app do layout.switch --name main-middle-close` |
-
-## 目录
-
-```
-mods/<name>/
-  main.js       模组本体(必需)
-  mod.json      首次出现的位置: {"place": "right" | "left" | "top" | "bottom" | "none", "size": 320}
-  RECIPE.md     说明文件, 供他人重写或参考
-  preview.png   截图
-```
+| 文件 | 作用 |
+| --- | --- |
+| `main.js` | 模组本体, 由官方 `tabs` 模组复制后增加中键处理 |
+| `mod.json` | 模组属性: 放置位置 `none`, 标题 `Tabs` |
+| `win-*.svg` | Windows 上的最小化、最大化、还原、关闭按钮图标 |
+| `RECIPE.md` | 改动的说明, 以及 Herdr 升级后重新合入的步骤 |
 
 ## 说明
 
@@ -42,4 +39,4 @@ mods/<name>/
 
 ## 许可
 
-各模组如无单独说明, 按 MIT 许可使用。
+MIT
