@@ -21,6 +21,10 @@ herdr-app do layout.clone --name main --as custom
 
 打开 `layouts/custom.json`, 把标签栏块的 `content.mod` 从 `tabs` 改为 `ethancao`, 然后 `herdr-app do layout.switch --name custom`。自带布局 `main` 每次启动会被 Herdr 重写, 所以必须用副本。
 
+## 配色
+
+`themes/one-half-dark.json` 是 Windows Terminal 的 One Half Dark 配色, 复制到 `%USERPROFILE%\.config\herdr-app	hemes\` 后, 在 `layouts/custom.json` 根节点写 `"theme": "one-half-dark"`, 或执行 `herdr-app do app.theme --name one-half-dark`。
+
 ## 文件
 
 | 文件 | 作用 |
@@ -29,6 +33,7 @@ herdr-app do layout.clone --name main --as custom
 | `mod.json` | 模组属性: 放置位置 `none`, 标题 `Tabs` |
 | `win-*.svg` | Windows 上的最小化、最大化、还原、关闭按钮图标 |
 | `plus.svg` | 标签栏末尾的加号图标 |
+| `themes/one-half-dark.json` | One Half Dark 配色, 背景 `#282c34`, 前景 `#dcdfe4` |
 | `RECIPE.md` | 改动的说明, 以及 Herdr 升级后重新合入的步骤 |
 
 ## 说明
