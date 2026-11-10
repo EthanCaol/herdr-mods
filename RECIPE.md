@@ -35,7 +35,7 @@
 const newTab = div().id("tab-new").size(30).ml(4).flex_none().flex().items_center().justify_center().rounded(6).text_size(20).text_color(t.dim)
   .hover(s => s.bg(t.hover).text_color(t.foreground))
   .on_mouse_down("left", stop)
-  .on_click((_e, cx) => { cx.stop_propagation(); run("tab.new", { argv: ["claude", "--permission-mode", "bypassPermissions"] }); })
+  .on_click((_e, cx) => { cx.stop_propagation(); run("tab.new", { name: `新会话-${shown.length + 1}`, argv: ["claude", "--permission-mode", "bypassPermissions"] }); })
   .child("+");
 ```
 
