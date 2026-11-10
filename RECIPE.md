@@ -43,7 +43,7 @@ const newTab = div().id("tab-new").size(30).ml(4).flex_none().flex().items_cente
 
 - 删掉 Files 与 Changes 两个面板按钮, 连同生成它们的 `panelButton` 函数。侧边面板仍由 `syncPanel` 维护显隐状态, 只是不能从标签栏打开
 
-- 本机布局直接改 `%USERPROFILE%\.config\herdr-app\layouts\main.json`, 把标签栏块的 `content.mod` 从 `tabs` 改为 `tab-middle-close`, 不另建布局
+- 布局用自带 `main` 的副本 `custom`(`layout.clone --name main --as custom`), 把标签栏块的 `content.mod` 从 `tabs` 改为 `tab-middle-close`。自带 `main` 每次启动被 Herdr 重写, 直接改会丢
 - 窗口按钮与加号图标使用本目录下的 `win-*.svg` 与 `plus.svg`, 其余图标引用 Herdr 自带的 `mods/pane`、`mods/files`、`mods/changes`、`mods/workspace-chrome`
 
 ## 注意
