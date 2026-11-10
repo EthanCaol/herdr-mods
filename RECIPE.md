@@ -1,4 +1,4 @@
-# tab-middle-close
+# ethancao
 
 在 Herdr 自带的标签栏上增加两个操作: 鼠标中键关闭标签页, 标签栏末尾的 `+` 直接新建 Claude Code 会话。其余行为与官方 `tabs` 模组一致: 左键切换、左键双击重命名、右键菜单、左键点击 × 关闭。
 
@@ -36,14 +36,14 @@ const newTab = div().id("tab-new").size(30).ml(4).flex_none().flex().items_cente
   .hover(s => s.bg(t.hover).text_color(t.foreground))
   .on_mouse_down("left", stop)
   .on_click((_e, cx) => { cx.stop_propagation(); run("tab.new", { name: `新会话-${shown.length + 1}`, argv: ["claude", "--permission-mode", "bypassPermissions"] }); })
-  .child(svg("mods/tab-middle-close/plus.svg").size(19));
+  .child(svg("mods/ethancao/plus.svg").size(19));
 ```
 
 `newTab` 放到标签栏容器的子元素列表末尾, 跟随标签页一起横向滚动; 原来位于右侧、打开 `new-menu` 的 `+` 已删除。
 
 - 删掉 Files 与 Changes 两个面板按钮, 连同生成它们的 `panelButton` 函数。侧边面板仍由 `syncPanel` 维护显隐状态, 只是不能从标签栏打开
 
-- 布局用自带 `main` 的副本 `custom`(`layout.clone --name main --as custom`), 把标签栏块的 `content.mod` 从 `tabs` 改为 `tab-middle-close`。自带 `main` 每次启动被 Herdr 重写, 直接改会丢
+- 布局用自带 `main` 的副本 `custom`(`layout.clone --name main --as custom`), 把标签栏块的 `content.mod` 从 `tabs` 改为 `ethancao`。自带 `main` 每次启动被 Herdr 重写, 直接改会丢
 - 窗口按钮与加号图标使用本目录下的 `win-*.svg` 与 `plus.svg`, 其余图标引用 Herdr 自带的 `mods/pane`、`mods/files`、`mods/changes`、`mods/workspace-chrome`
 
 ## 注意
@@ -54,7 +54,7 @@ const newTab = div().id("tab-new").size(30).ml(4).flex_none().flex().items_cente
 
 ## 完成标准
 
-- `herdr-app check %USERPROFILE%\.config\herdr-app\mods\tab-middle-close` 通过
+- `herdr-app check %USERPROFILE%\.config\herdr-app\mods\ethancao` 通过
 - 改完布局保存后标签栏正常显示, 标签可切换
 - 中键点击标签页后该标签关闭
 - 点击标签栏末尾的 `+` 后新标签页打开并运行 Claude Code

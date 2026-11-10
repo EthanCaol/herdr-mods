@@ -56,7 +56,7 @@ export default class Tabs extends View {
       .hover(s => s.bg(t.hover).text_color(t.foreground))
       .on_mouse_down("left", stop)
       .on_click((_e, cx) => { cx.stop_propagation(); run("tab.new", { name: `新会话-${shown.length + 1}`, argv: ["claude", "--permission-mode", "bypassPermissions"] }); })
-      .child(svg("mods/tab-middle-close/plus.svg").size(19));
+      .child(svg("mods/ethancao/plus.svg").size(19));
     const item = (c, i) => {
       const program = panes().find(p => p.tab === c.id && p.program?.agent)?.program ?? panes().find(p => p.tab === c.id)?.program;
       const name = /^tb\d+$/.test(c.name) ? program?.name ?? "Terminal" : c.name;
@@ -89,8 +89,8 @@ export default class Tabs extends View {
       .on_mouse_up("left", () => { this.pressed = null; })
       .on_scroll_wheel(e => { if (Math.abs(e.delta.y) >= 1) run(e.delta.y > 0 ? "tab.prev" : "tab.next"); })
       .child(h_flex().id("tab-scroll").flex_1().min_w(0).h_full().items_center().gap(3).overflow_x_scrollbar().children([...shown.map(item), newTab]))
-      .when(w?.buttons, el => el.child(button("minimize", w.platform === "windows" ? svg("mods/tab-middle-close/win-min.svg").size(16) : "−", () => run("window.minimize")))
-        .child(button("maximize", w.platform === "windows" ? svg(`mods/tab-middle-close/${w.maximized ? "win-restore" : "win-max"}.svg`).size(16) : "□", () => run("window.maximize")))
-        .child(button("close-window", w.platform === "windows" ? svg("mods/tab-middle-close/win-close.svg").size(16) : svg("mods/pane/close.svg").size(13), () => run("window.close"))));
+      .when(w?.buttons, el => el.child(button("minimize", w.platform === "windows" ? svg("mods/ethancao/win-min.svg").size(16) : "−", () => run("window.minimize")))
+        .child(button("maximize", w.platform === "windows" ? svg(`mods/ethancao/${w.maximized ? "win-restore" : "win-max"}.svg`).size(16) : "□", () => run("window.maximize")))
+        .child(button("close-window", w.platform === "windows" ? svg("mods/ethancao/win-close.svg").size(16) : svg("mods/pane/close.svg").size(13), () => run("window.close"))));
   }
 }

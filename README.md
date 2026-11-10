@@ -6,11 +6,11 @@
 
 ## 安装
 
-把本目录复制成 Herdr 模组目录下名为 `tab-middle-close` 的文件夹:
+把本目录复制成 Herdr 模组目录下名为 `ethancao` 的文件夹:
 
 ```
-git clone https://github.com/EthanCaol/herdr-mods.git tab-middle-close
-move tab-middle-close %USERPROFILE%\.config\herdr-app\mods\
+git clone https://github.com/EthanCaol/herdr-mods.git ethancao
+move ethancao %USERPROFILE%\.config\herdr-app\mods\
 ```
 
 再复制一份自带布局并改内容:
@@ -19,7 +19,7 @@ move tab-middle-close %USERPROFILE%\.config\herdr-app\mods\
 herdr-app do layout.clone --name main --as custom
 ```
 
-打开 `layouts/custom.json`, 把标签栏块的 `content.mod` 从 `tabs` 改为 `tab-middle-close`, 然后 `herdr-app do layout.switch --name custom`。自带布局 `main` 每次启动会被 Herdr 重写, 所以必须用副本。
+打开 `layouts/custom.json`, 把标签栏块的 `content.mod` 从 `tabs` 改为 `ethancao`, 然后 `herdr-app do layout.switch --name custom`。自带布局 `main` 每次启动会被 Herdr 重写, 所以必须用副本。
 
 ## 文件
 
