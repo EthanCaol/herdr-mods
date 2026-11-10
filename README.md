@@ -18,6 +18,12 @@ herdr-app do mod.open --name <name>
 
 或者用带参数的模组面板: `pane.split` 时传 `mod` 与 `props`。
 
+## 模组列表
+
+| 模组 | 说明 | 安装 |
+| --- | --- | --- |
+| `tab-middle-close` | 标签栏增加鼠标中键关闭标签页 | 复制 `mods/tab-middle-close` 与 `layouts/main-middle-close.json`, 然后 `herdr-app do layout.switch --name main-middle-close` |
+
 ## 目录
 
 ```
