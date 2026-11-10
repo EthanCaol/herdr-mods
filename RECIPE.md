@@ -29,7 +29,7 @@
 .on_mouse_down("middle", (_e, cx) => { cx.stop_propagation(); run("tab.close", { id: c.id }); })
 ```
 
-- 布局 `main-middle-close` 由官方布局 `main` 复制, 只把标签栏块的 `content.mod` 从 `tabs` 改为 `tab-middle-close`。布局留在本机 `%USERPROFILE%\.config\herdr-app\layouts\`, 不放进仓库
+- 本机布局直接改 `%USERPROFILE%\.config\herdr-app\layouts\main.json`, 把标签栏块的 `content.mod` 从 `tabs` 改为 `tab-middle-close`, 不另建布局
 - 窗口按钮图标使用本目录下的 `win-*.svg`, 其余图标引用 Herdr 自带的 `mods/pane`、`mods/files`、`mods/changes`、`mods/workspace-chrome`
 
 ## 注意
@@ -41,5 +41,5 @@
 ## 完成标准
 
 - `herdr-app check %USERPROFILE%\.config\herdr-app\mods\tab-middle-close` 通过
-- 切换布局后标签栏正常显示, 标签可切换
+- 改完布局保存后标签栏正常显示, 标签可切换
 - 中键点击标签页后该标签关闭

@@ -13,14 +13,7 @@ git clone https://github.com/EthanCaol/herdr-mods.git tab-middle-close
 move tab-middle-close %USERPROFILE%\.config\herdr-app\mods\
 ```
 
-再复制一份官方布局并启用:
-
-```
-herdr-app do layout.clone --name main --as main-middle-close
-herdr-app do layout.switch --name main-middle-close
-```
-
-打开 `layouts/main-middle-close.json`, 把标签栏块的 `content.mod` 从 `tabs` 改为 `tab-middle-close`。改动保存后热重载生效。
+再打开 `layouts/main.json`, 把标签栏块的 `content.mod` 从 `tabs` 改为 `tab-middle-close`。保存后热重载生效。
 
 ## 文件
 
