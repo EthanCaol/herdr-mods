@@ -52,7 +52,7 @@ export default class Tabs extends View {
     const stop = (_e, cx) => cx.stop_propagation();
     const button = (id, label, action) => div().id(id).size(26).flex_none().flex().items_center().justify_center().rounded(6).text_color(t.dim).hover(s => s.bg(t.hover).text_color(t.foreground))
       .on_mouse_down("left", stop).on_click(action).child(label);
-    const newTab = div().id("tab-new").size(24).flex_none().flex().items_center().justify_center().rounded(6).text_color(t.dim)
+    const newTab = div().id("tab-new").size(28).flex_none().flex().items_center().justify_center().rounded(6).text_size(18).text_color(t.dim)
       .hover(s => s.bg(t.hover).text_color(t.foreground))
       .on_mouse_down("left", stop)
       .on_click((_e, cx) => { cx.stop_propagation(); run("tab.new", { argv: ["claude"] }); })
