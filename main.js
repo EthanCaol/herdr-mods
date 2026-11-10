@@ -91,6 +91,6 @@ export default class Tabs extends View {
       .child(h_flex().id("tab-scroll").flex_1().min_w(0).h_full().items_center().gap(3).overflow_x_scrollbar().children([...shown.map(item), newTab]))
       .when(w?.buttons, el => el.child(button("minimize", w.platform === "windows" ? svg("mods/ethancao/win-min.svg").size(16) : "−", () => run("window.minimize")))
         .child(button("maximize", w.platform === "windows" ? svg(`mods/ethancao/${w.maximized ? "win-restore" : "win-max"}.svg`).size(16) : "□", () => run("window.maximize")))
-        .child(button("close-window", w.platform === "windows" ? svg("mods/ethancao/win-close.svg").size(16) : svg("mods/pane/close.svg").size(13), () => run("window.minimize"))));
+        .child(button("close-window", w.platform === "windows" ? svg("mods/ethancao/win-close.svg").size(16) : svg("mods/pane/close.svg").size(13), () => run("window.close"))));
   }
 }
