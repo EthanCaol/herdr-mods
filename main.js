@@ -51,8 +51,8 @@ export default class Tabs extends View {
     const shown = space?.tabs ?? [];
     const stop = (_e, cx) => cx.stop_propagation();
     // 贴住窗口右上角: 全高, 无外边距, 鼠标推到角落即可命中
-    const winButton = (id, icon, action) => div().id(id).h_full().w(40).flex_none().flex().items_center().justify_center().text_color(t.dim)
-      .hover(s => s.bg(t.hover).text_color(t.foreground)).on_mouse_down("left", stop).on_click(action).child(icon);
+    const winButton = (id, icon, action, hover) => div().id(id).h_full().w(40).flex_none().flex().items_center().justify_center().text_color(t.dim)
+      .hover(s => hover ? s.bg(hover[0]).text_color(hover[1]) : s.bg(t.hover).text_color(t.foreground)).on_mouse_down("left", stop).on_click(action).child(icon);
     const newTab = div().id("tab-new").size(30).ml(4).flex_none().flex().items_center().justify_center().rounded(6).text_color(t.dim)
       .hover(s => s.bg(t.hover).text_color(t.foreground))
       .on_mouse_down("left", stop)
@@ -92,6 +92,6 @@ export default class Tabs extends View {
       .child(h_flex().id("tab-scroll").flex_1().min_w(0).h_full().items_center().gap(3).overflow_x_scrollbar().children([...shown.map(item), newTab]))
       .when(w?.buttons, el => el.child(winButton("minimize", w.platform === "windows" ? svg("mods/ethancao/win-min.svg").size(16) : "−", () => run("window.minimize")))
         .child(winButton("maximize", w.platform === "windows" ? svg(`mods/ethancao/${w.maximized ? "win-restore" : "win-max"}.svg`).size(16) : "□", () => run("window.maximize")))
-        .child(winButton("close-window", w.platform === "windows" ? svg("mods/ethancao/win-close.svg").size(16) : svg("mods/pane/close.svg").size(13), () => run("window.close"))));
+        .child(winButton("close-window", w.platform === "windows" ? svg("mods/ethancao/win-close.svg").size(16) : svg("mods/pane/close.svg").size(13), () => run("window.close"), ["#c42b1c", "#ffffff"])));
   }
 }
