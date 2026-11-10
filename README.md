@@ -23,7 +23,7 @@ herdr-app do layout.clone --name main --as custom
 
 ## 配色
 
-`themes/one-half-dark.json` 是 Windows Terminal 的 One Half Dark 配色, 复制到 `%USERPROFILE%\.config\herdr-app	hemes\` 后, 在 `layouts/custom.json` 根节点写 `"theme": "one-half-dark"`, 或执行 `herdr-app do app.theme --name one-half-dark`。
+`themes/one-half-dark.json` 是 Windows Terminal 的 One Half Dark 配色, 复制到 `%USERPROFILE%\.config\herdr-app\themes\` 后, 在 `layouts/custom.json` 根节点写 `"theme": "one-half-dark"`, 或执行 `herdr-app do app.theme --name one-half-dark`。
 
 ## 文件
 
