@@ -107,7 +107,6 @@ export default class Tabs extends View {
     this.syncPanel(space, panel, body, enabled);
     return h_flex().size_full().min_w(0).pr(0).pl(lightsPadding).gap(3).items_center().bg(t.chrome).border_b(1).border_color(t.border)
       .on_mouse_up("left", () => { this.pressed = null; })
-      .on_scroll_wheel(e => { if (Math.abs(e.delta.y) >= 1) run(e.delta.y > 0 ? "tab.prev" : "tab.next"); })
       .child(h_flex().id("tab-scroll").flex_1().min_w(0).h_full().items_center().gap(3).overflow_x_scrollbar().children([...shown.map(item), newTab]))
       .when(w?.buttons, el => el.child(winButton("minimize", w.platform === "windows" ? svg("mods/ethancao/win-min.svg").size(16) : "−", () => run("window.minimize")))
         .child(winButton("maximize", w.platform === "windows" ? svg(`mods/ethancao/${w.maximized ? "win-restore" : "win-max"}.svg`).size(16) : "□", () => run("window.maximize")))
