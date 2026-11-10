@@ -8,7 +8,7 @@
 
 - 左侧为标签页, 每个标签显示图标、名称、运行中的转圈标记或等待标记
 - 活动标签右侧有 × 按钮
-- 右侧为 Files、Changes 面板按钮, Windows 上还有最小化、最大化、关闭三个窗口按钮
+- 右侧为 Windows 上的最小化、最大化、关闭三个窗口按钮; Files 与 Changes 两个面板按钮已删除
 - 标签栏末尾(最后一个标签页之后)有一个 `+`
 - 底部状态栏不变
 
@@ -40,6 +40,8 @@ const newTab = div().id("tab-new").size(24).flex_none().flex().items_center().ju
 ```
 
 `newTab` 放到标签栏容器的子元素列表末尾, 跟随标签页一起横向滚动; 原来位于右侧、打开 `new-menu` 的 `+` 已删除。
+
+- 删掉 Files 与 Changes 两个面板按钮, 连同生成它们的 `panelButton` 函数。侧边面板仍由 `syncPanel` 维护显隐状态, 只是不能从标签栏打开
 
 - 本机布局直接改 `%USERPROFILE%\.config\herdr-app\layouts\main.json`, 把标签栏块的 `content.mod` 从 `tabs` 改为 `tab-middle-close`, 不另建布局
 - 窗口按钮图标使用本目录下的 `win-*.svg`, 其余图标引用 Herdr 自带的 `mods/pane`、`mods/files`、`mods/changes`、`mods/workspace-chrome`
