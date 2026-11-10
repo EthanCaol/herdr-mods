@@ -1,6 +1,6 @@
 import { View, div, svg, image } from "gpui-kit";
 import { h_flex } from "gpui-base";
-import { spaces, panes, run, openOverlay, theme, window, shared, layout, settings } from "herdr";
+import { spaces, panes, run, openOverlay, theme, window, shared, layout, settings, nextCommand } from "herdr";
 
 function find(node, id) {
   if (node?.id === id) return node;
@@ -17,13 +17,25 @@ export default class Tabs extends View {
     this.pressed = null;
     this.hoverClose = false;
     this.panels = JSON.parse(localStorage.getItem("panels") ?? "{}");
+    // 按键绑定 ethancao.newtab 会走这里, 与点加号一致, 名称按当前标签数生成
+    cx.spawn(async () => {
+      for (;;) {
+        const command = await nextCommand();
+        if (command === "newtab") this.newTab();
+      }
+    });
+  }
+
+  newTab() {
+    const count = spaces().find(p => p.active)?.tabs?.length ?? 0;
+    run("tab.new", { name: `新会话-${count + 1}`, argv: ["claude", "--permission-mode", "bypassPermissions"] });
   }
 
   // 关掉 space 里最后一个标签会连带关闭 space, 所以先补一个空白标签再关旧的
   closeTab(id) {
     const tabs = (spaces().find(p => p.active)?.tabs ?? []).filter(x => x.id !== id);
     if (tabs.length > 0) { run("tab.close", { id }); return; }
-    run("tab.new", {});
+    run("tab.new", { name: "新会话-1", argv: ["claude", "--permission-mode", "bypassPermissions"] });
     this.cx.timer.after(600, () => run("tab.close", { id }));
   }
 
@@ -75,7 +87,7 @@ export default class Tabs extends View {
     const newTab = div().id("tab-new").size(30).ml(4).flex_none().flex().items_center().justify_center().rounded(6).text_color(t.dim)
       .hover(s => s.bg(t.hover).text_color(t.foreground))
       .on_mouse_down("left", stop)
-      .on_click((_e, cx) => { cx.stop_propagation(); run("tab.new", { name: `新会话-${shown.length + 1}`, argv: ["claude", "--permission-mode", "bypassPermissions"] }); })
+      .on_click((_e, cx) => { cx.stop_propagation(); this.newTab(); })
       .child(svg("mods/ethancao/plus.svg").size(19));
     const item = (c, i) => {
       const program = panes().find(p => p.tab === c.id && p.program?.agent)?.program ?? panes().find(p => p.tab === c.id)?.program;
