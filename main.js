@@ -12,10 +12,19 @@ function find(node, id) {
 }
 
 export default class Tabs extends View {
-  init() {
+  init(_props, cx) {
+    this.cx = cx;
     this.pressed = null;
     this.hoverClose = false;
     this.panels = JSON.parse(localStorage.getItem("panels") ?? "{}");
+  }
+
+  // 关掉 space 里最后一个标签会连带关闭 space, 所以先补一个空白标签再关旧的
+  closeTab(id) {
+    const tabs = (spaces().find(p => p.active)?.tabs ?? []).filter(x => x.id !== id);
+    if (tabs.length > 0) { run("tab.close", { id }); return; }
+    run("tab.new", {});
+    this.cx.timer.after(600, () => run("tab.close", { id }));
   }
 
   // The side panel is remembered per space: switching shows that space's choice
@@ -81,12 +90,12 @@ export default class Tabs extends View {
           else run("tab.select", { id: c.id });
         })
         .on_mouse_down("right", (_e, cx) => { cx.stop_propagation(); openOverlay({ mod: "menu", kind: "popup", width: 200, props: { tab: "tab", target: { id: c.id, space: space.id } } }); })
-        .on_mouse_down("middle", (_e, cx) => { cx.stop_propagation(); run("tab.close", { id: c.id }); })
+        .on_mouse_down("middle", (e, cx) => { cx.stop_propagation(); this.closeTab(c.id); })
         .when(Boolean(program?.icon), el => el.child(program.tint ? svg(program.icon).size(14).text_color(t.muted) : image(program.icon).size(14)))
         .child(div().max_w(170).truncate().child(c.zoomed ? `${name} Z` : name))
         .when(c.status === "working", el => el.child(svg("mods/workspace-chrome/spinner.svg").size(12).flex_none().text_color(t.working).spin(900)))
         .when(c.status === "blocked" || c.status === "done", el => el.child(div().size(6).rounded(3).bg(t[c.status])))
-        .child(div().id(`close-${c.id}`).text_color(t.dim).hover(s => s.text_color(t.foreground)).on_mouse_down("left", stop).on_click((_e, cx) => { cx.stop_propagation(); run("tab.close", { id: c.id }); }).child(svg("mods/pane/close.svg").size(14)));
+        .child(div().id(`close-${c.id}`).text_color(t.dim).hover(s => s.text_color(t.foreground)).on_mouse_down("left", stop).on_click((_e, cx) => { cx.stop_propagation(); this.closeTab(c.id); }).child(svg("mods/pane/close.svg").size(14)));
     };
     const root = layout(), sidebar = find(root, "sidebar"), w = window();
     // Old saved rails and a dragged-narrow sidebar can be smaller than the window buttons.
