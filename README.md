@@ -22,6 +22,7 @@ move tab-middle-close %USERPROFILE%\.config\herdr-app\mods\
 | `main.js` | 模组本体, 由官方 `tabs` 模组复制后增加中键关闭与末尾 `+` 新建会话 |
 | `mod.json` | 模组属性: 放置位置 `none`, 标题 `Tabs` |
 | `win-*.svg` | Windows 上的最小化、最大化、还原、关闭按钮图标 |
+| `plus.svg` | 标签栏末尾的加号图标 |
 | `RECIPE.md` | 改动的说明, 以及 Herdr 升级后重新合入的步骤 |
 
 ## 说明

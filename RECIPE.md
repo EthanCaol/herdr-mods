@@ -32,11 +32,11 @@
 .on_mouse_down("middle", (_e, cx) => { cx.stop_propagation(); run("tab.close", { id: c.id }); })
 
 // 标签栏末尾的 +, 直接新建 Claude Code 会话
-const newTab = div().id("tab-new").size(30).ml(4).flex_none().flex().items_center().justify_center().rounded(6).text_size(20).text_color(t.dim)
+const newTab = div().id("tab-new").size(30).ml(4).flex_none().flex().items_center().justify_center().rounded(6).text_color(t.dim)
   .hover(s => s.bg(t.hover).text_color(t.foreground))
   .on_mouse_down("left", stop)
   .on_click((_e, cx) => { cx.stop_propagation(); run("tab.new", { name: `新会话-${shown.length + 1}`, argv: ["claude", "--permission-mode", "bypassPermissions"] }); })
-  .child("+");
+  .child(svg("mods/tab-middle-close/plus.svg").size(16));
 ```
 
 `newTab` 放到标签栏容器的子元素列表末尾, 跟随标签页一起横向滚动; 原来位于右侧、打开 `new-menu` 的 `+` 已删除。
@@ -44,7 +44,7 @@ const newTab = div().id("tab-new").size(30).ml(4).flex_none().flex().items_cente
 - 删掉 Files 与 Changes 两个面板按钮, 连同生成它们的 `panelButton` 函数。侧边面板仍由 `syncPanel` 维护显隐状态, 只是不能从标签栏打开
 
 - 本机布局直接改 `%USERPROFILE%\.config\herdr-app\layouts\main.json`, 把标签栏块的 `content.mod` 从 `tabs` 改为 `tab-middle-close`, 不另建布局
-- 窗口按钮图标使用本目录下的 `win-*.svg`, 其余图标引用 Herdr 自带的 `mods/pane`、`mods/files`、`mods/changes`、`mods/workspace-chrome`
+- 窗口按钮与加号图标使用本目录下的 `win-*.svg` 与 `plus.svg`, 其余图标引用 Herdr 自带的 `mods/pane`、`mods/files`、`mods/changes`、`mods/workspace-chrome`
 
 ## 注意
 
