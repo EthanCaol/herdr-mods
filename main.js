@@ -22,8 +22,14 @@ export default class Tabs extends View {
       for (;;) {
         const command = await nextCommand();
         if (command === "newtab") this.newTab();
+        else if (command === "closetab") this.closeActiveTab();
       }
     });
+  }
+
+  closeActiveTab() {
+    const tab = spaces().find(p => p.active)?.tabs?.find(t => t.active);
+    if (tab) this.closeTab(tab.id);
   }
 
   newTab() {
